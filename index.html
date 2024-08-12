@@ -65,6 +65,10 @@
             // Construct UPI deep link with the specified UPI ID
             const upiLink = `upi://pay?pa=9577500992@mbk&pn=YourName&am=${amount}&cu=INR&tn=PaymentForService`;
 
+            // Display the success message and the hidden link assuming payment is successful
+            document.getElementById('successMessage').textContent = "Payment initiated. You can access the content below.";
+            document.getElementById('hiddenLink').style.display = 'block';
+
             // Redirect to UPI app
             window.location.href = upiLink;
         }
