@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UPI Payment Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        .payment-form {
+            margin-bottom: 20px;
+        }
+        .hidden-link {
+            display: none;
+            margin-top: 20px;
+        }
+        .success-message {
+            color: green;
+            margin-top: 20px;
+        }
+        .error-message {
+            color: red;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Make a Payment via UPI</h1>
+
+    <!-- Payment Form -->
+    <div class="payment-form">
+        <label for="amount">Amount: </label>
+        <input type="number" id="amount" value="5" min="5"><br><br>
+
+        <button id="payNowButton" onclick="processPayment()">Pay Now</button>
+    </div>
+
+    <!-- Success and Error Messages -->
+    <div id="messages">
+        <p id="successMessage" class="success-message"></p>
+        <p id="errorMessage" class="error-message"></p>
+    </div>
+
+    <!-- Hidden Link -->
+    <div id="hiddenLink" class="hidden-link">
+        <a href="https://example.com/special-link" target="_blank">Click here to access the content</a>
+    </div>
+
+    <script>
+        function processPayment() {
+            const amount = document.getElementById('amount').value;
+
+            // Check if the amount is less than the minimum required amount
+            if (amount < 5) {
+                document.getElementById('errorMessage').textContent = "The minimum payment amount is 5.";
+                document.getElementById('successMessage').textContent = "";
+                document.getElementById('hiddenLink').style.display = 'none';
+                return;
+            }
+
+            // Construct UPI deep link with the specified UPI ID
+            const upiLink = `upi://pay?pa=9577500992@mbk&pn=YourName&am=${amount}&cu=INR&tn=PaymentForService`;
+
+            // Redirect to UPI app
+            window.location.href = upiLink;
+        }
+    </script>
+
+</body>
+</html>
