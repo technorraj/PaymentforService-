@@ -62,15 +62,17 @@
                 return;
             }
 
+            // Display the success message and the hidden link immediately
+            document.getElementById('successMessage').textContent = "You can now access the content below.";
+            document.getElementById('hiddenLink').style.display = 'block';
+
             // Construct UPI deep link with the specified UPI ID
             const upiLink = `upi://pay?pa=9577500992@mbk&pn=YourName&am=${amount}&cu=INR&tn=PaymentForService`;
 
-            // Display the success message and the hidden link assuming payment is successful
-            document.getElementById('successMessage').textContent = "Payment initiated. You can access the content below.";
-            document.getElementById('hiddenLink').style.display = 'block';
-
             // Redirect to UPI app
-            window.location.href = upiLink;
+            setTimeout(() => {
+                window.location.href = upiLink;
+            }, 1000); // Wait for 1 second before redirecting to give the user a chance to see the message
         }
     </script>
 
