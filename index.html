@@ -7,23 +7,79 @@
     <style>
         body {
             font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            color: #333;
             text-align: center;
-            margin: 50px;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            color: #0044cc; /* Dark blue */
+            margin-top: 50px;
         }
         .payment-form {
-            margin-bottom: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+            padding: 20px;
+            margin: 20px auto;
+            width: 80%;
+            max-width: 400px;
+        }
+        label {
+            font-size: 18px;
+            color: #0044cc; /* Dark blue */
+        }
+        input[type="number"] {
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #0044cc;
+            border-radius: 4px;
+            width: calc(100% - 24px);
+            margin: 10px 0;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #0044cc; /* Dark blue */
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #0033aa; /* Slightly darker blue */
         }
         .hidden-link {
-            display: none;
-            margin-top: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: none; /* Initially hidden */
+            padding: 20px;
+            margin: 20px auto;
+            width: 80%;
+            max-width: 400px;
         }
         .success-message {
-            color: green;
+            color: #28a745; /* Green */
+            font-size: 18px;
             margin-top: 20px;
         }
         .error-message {
-            color: red;
+            color: #dc3545; /* Red */
+            font-size: 18px;
             margin-top: 20px;
+        }
+        a {
+            color: #0044cc; /* Dark blue */
+            text-decoration: none;
+            font-size: 16px;
+        }
+        a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -62,9 +118,13 @@
                 return;
             }
 
-            // Display the success message and the hidden link immediately
+            // Display the success message
             document.getElementById('successMessage').textContent = "You can now access the content below.";
-            document.getElementById('hiddenLink').style.display = 'block';
+
+            // Show the hidden link after 5 seconds
+            setTimeout(() => {
+                document.getElementById('hiddenLink').style.display = 'block';
+            }, 5000); // 5 seconds delay
 
             // Construct UPI deep link with the specified UPI ID
             const upiLink = `upi://pay?pa=9577500992@mbk&pn=YourName&am=${amount}&cu=INR&tn=PaymentForService`;
